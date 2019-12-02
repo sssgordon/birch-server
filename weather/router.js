@@ -31,7 +31,7 @@ router.put("/weather/:id", async (req, res, next) => {
     const weather = await Weather.findByPk(req.params.id);
     if (weather) {
       const updatedWeather = await weather.update(req.body);
-      res.status(201).send(updatedWeather);
+      res.status(202).send(updatedWeather);
     } else {
       res.status(404);
     }
@@ -44,8 +44,8 @@ router.delete("/weather/:id", async (req, res, next) => {
   try {
     const weather = await Weather.findByPk(req.params.id);
     if (weather) {
-      const deletedWeather = await weather.destroy();
-      res.status(204).send(deletedWeather);
+      weather.destroy();
+      res.send({ message: "Weather deleted" });
     } else {
       res.status(404);
     }

@@ -1,8 +1,8 @@
 const express = require("express");
-const db = require("./db");
-const weatherRouter = require("./weather/router");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const weatherRouter = require("./weather/router");
+const productRouter = require("./products/router");
 
 const app = express();
 
@@ -13,6 +13,7 @@ const jsonParser = bodyParser.json();
 app.use(jsonParser);
 
 app.use(weatherRouter);
+app.use(productRouter);
 
 app.get("/", (req, res, next) => {
   res.send("hello world");
