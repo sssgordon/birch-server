@@ -1,5 +1,6 @@
 const { Router } = require("express");
 const Product = require("./model");
+const Weather = require("../category/model");
 
 const router = new Router();
 
@@ -10,7 +11,8 @@ router.post("/products", async (req, res, next) => {
       description: req.body.description,
       imageUrl: req.body.imageUrl,
       inStock: req.body.inStock,
-      price: req.body.price
+      price: req.body.price,
+      categoryId: req.body.categoryId
     };
     const newProduct = await Product.create(product);
     res.status(201).send(newProduct);
@@ -21,7 +23,10 @@ router.post("/products", async (req, res, next) => {
 
 router.get("/products", async (req, res, next) => {
   try {
-    const products = await Product.findAll({ order: [["id", "DESC"]] });
+    const products = await Product.findAll({
+      order: [["id", "DESC"]],
+      include: [Weather]
+    });
     res.send(products);
   } catch (error) {
     next(error);

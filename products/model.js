@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
+const Category = require("../category/model");
 
 const Product = db.define("product", {
   name: {
@@ -23,5 +24,8 @@ const Product = db.define("product", {
     allowNull: false
   }
 });
+
+Product.belongsTo(Category);
+Category.hasMany(Product);
 
 module.exports = Product;

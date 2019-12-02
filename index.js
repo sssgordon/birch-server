@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
-const weatherRouter = require("./weather/router");
+const categoryRouter = require("./category/router");
 const productRouter = require("./products/router");
 
 const app = express();
@@ -12,7 +12,7 @@ app.use(corsMiddleware);
 const jsonParser = bodyParser.json();
 app.use(jsonParser);
 
-app.use(weatherRouter);
+app.use(categoryRouter);
 app.use(productRouter);
 
 app.get("/", (req, res, next) => {
