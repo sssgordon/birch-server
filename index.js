@@ -15,8 +15,10 @@ app.use(jsonParser);
 app.use(categoryRouter);
 app.use(productRouter);
 
+require("./seed"); // SEED DATA
+
 app.get("/", (req, res, next) => {
-  res.send("hello world");
+    res.send("hello world");
 });
 
 const port = process.env.PORT || 4000;
