@@ -6,7 +6,10 @@ const productRouter = require("./products/router");
 
 const app = express();
 
-const corsMiddleware = cors();
+const corsMiddleware = cors({
+    origin: "http://enigmatic-inlet-27404.herokuapp.com/",
+    credentials: true
+});
 app.use(corsMiddleware);
 
 const jsonParser = bodyParser.json();
